@@ -1,0 +1,11 @@
+.barStyle{
+    width: 120px;
+    height: 5px;
+    background-color: #fff;
+    border-radius: 10px;
+
+    .bar{
+        height: 100%;
+        background-color: rgb(47, 102, 131);
+    }
+}

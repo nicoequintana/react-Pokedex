@@ -1,0 +1,14 @@
+.favourites{
+    width: 100%;
+    height: 100%;
+    padding: 2rem 0;
+    background: url('../../assets/images/BG_POKEDEX.jpg');
+    background-position: center top;
+    background-attachment: fixed;
+    overflow: auto;
+
+    .favouritesContainer{
+        height: 100%;
+        margin-bottom: 1rem;
+    }
+}

@@ -1,0 +1,15 @@
+.paginationBtnStyles{
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    background-color: rgb(205, 17, 17);
+    border: none;
+    border-radius:50%;
+    color: #fff;
+    font-size: 1rem;
+
+    &:disabled{
+        visibility: hidden;
+    }
+
+}
