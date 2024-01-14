@@ -1,0 +1,21 @@
+.formStyle{
+    width: 100%;
+    padding: 1rem;
+    min-width: 220px;
+    display: flex;
+    place-content: center;
+
+    .inputStyle{
+        width: 250px;
+        margin: 0 auto;
+        border-radius: 5px;
+        border: none;
+        padding: 5px;
+        background-color: #ffffffb4;
+
+        &::placeholder{
+            color: #fff;
+        }
+
+    }
+}

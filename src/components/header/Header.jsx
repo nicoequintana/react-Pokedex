@@ -21,7 +21,6 @@ export const Header = () => {
                         <li><Link to='/'>Inicio</Link></li>
                         <li><Link to='/pokedex'>Pokedex</Link></li>
                         <li><Link to='/favourites'>Favs</Link></li>
-                        <li><Link to='/search'>Search</Link></li>
                     </ul>
                 </nav>
                 <SearchPokemon />

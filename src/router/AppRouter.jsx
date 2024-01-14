@@ -20,6 +20,8 @@ export const AppRouter = () => {
         <Route path="/pokedex/:name/:id" element={ <PokemonDetail /> }/>
         <Route path="/favourites" element={ <Favourites /> }/>
         <Route path="/search/:name" element={ <Search /> }/>
+
+        <Route path="/*" element={ <Home /> }/>
     </Routes>
   )
 }
