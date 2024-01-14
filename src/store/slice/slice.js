@@ -12,6 +12,7 @@ export const pokedexSlice = createSlice({
     page: 0,
     allPokemonName: null,
     favourites: JSON.parse(localStorage.getItem('fav')) || [],
+    searchedPokemons: [],
   },
 
   reducers: {
@@ -21,6 +22,7 @@ export const pokedexSlice = createSlice({
 
     setAllPokemon: (state, action) => {
       state.allPokemonName = action.payload
+      state.isLoading = false
     },
 
     setPokemonList: (state, action) => {
@@ -30,7 +32,6 @@ export const pokedexSlice = createSlice({
 
     setActivePokemon: (state, action) => {
       state.pokemon = action.payload.pokemonDetails
-      
       state.isLoading = false
     },
 
@@ -40,12 +41,11 @@ export const pokedexSlice = createSlice({
     },
 
     favPokemons: (state, action) => {
-      
       state.isLoading = true
 
       state.favourites = JSON.parse(localStorage.getItem('fav')) || []
 
-      if(state.favourites.find(poke => poke.name === state.pokemon.name)){
+      if(state.favourites.find(poke => poke.name === action.payload)){
 
         const favUpdate = state.favourites.filter( poke => poke.name !== action.payload)
         state.favourites = favUpdate;
@@ -57,9 +57,12 @@ export const pokedexSlice = createSlice({
         localStorage.setItem('fav', JSON.stringify(state.favourites))
         state.isLoading = false
       }
+    },
 
-      
-    }
+    setSearchedPokemons: (state, action) => {
+      state.searchedPokemons = action.payload
+      state.isLoading = false;
+    },
 
   },
 })
@@ -72,6 +75,7 @@ export const {
   setActivePokemon,
   handlePage,
   favPokemons,
+  setSearchedPokemons,
 
 
 } = pokedexSlice.actions   

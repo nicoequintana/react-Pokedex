@@ -12,9 +12,15 @@ export const Layout = ({children}) => {
     useEffect(() => {
       
         dispatch(getPokemonList(page))
-        dispatch(getAllPokemon())
-
+        
     }, [page])
+
+    
+    useEffect(() => {
+      
+         dispatch(getAllPokemon())
+        
+    }, [])
     
 
 

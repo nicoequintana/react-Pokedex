@@ -15,33 +15,23 @@ export const PokemonDetail = () => {
     const colors = colorByType;
     const favStar = useRef()
     const {pokemon, isLoading, favourites} = useSelector(state => state.pokedex);
-    const {name} = useParams();
+    const {name, id} = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    
+    //const pokemonSelected = allPokemonName.find(poke => poke.name === name)
 
 
     useEffect(() => {
-
-      dispatch(getPokemon(name))
-
-    }, [name])
-
-
-
+      dispatch(getPokemon(id))
+    }, [])
 
     const backNavigate = () => {
-        navigate( -1 )
+      navigate( -1 )
     }
 
     const handleFav = (name) => {
-
-      console.log(name)
       dispatch(favPokemons(name))
-
-     
-
-
     }
 
 
@@ -83,9 +73,9 @@ export const PokemonDetail = () => {
                 </div>
                 <div className={css.detailStatsContainer}>
                         <h3>Pokeinfo</h3>
-                        <p>{pokemon.flavor}</p>
+                        <p>{pokemon?.flavor}</p>
                     {
-                        pokemon?.stats?.map( stat => (
+                      pokemon?.stats?.map( stat => (
                           <div className={css.stats} key={stat.stat.name}>
                             <p>{`${stat.stat.name}:`}</p>
                             <BarStat stat={stat}/>

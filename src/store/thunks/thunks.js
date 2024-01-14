@@ -1,12 +1,14 @@
 import { pokeApiRest } from "../../api/pokeApiRest"
-import { handlePage, setActivePokemon, setAllPokemon, setPokemonList, startLoading } from "../slice/slice"
+import { handlePage, setActivePokemon, setAllPokemon, setPokemonList, setSearchedPokemons, startLoading } from "../slice/slice"
 
 
 
 export const getAllPokemon = () => {
     return async(dispatch) => {
         dispatch(startLoading())
+
         const {data} = await pokeApiRest.get(`/pokemon/?limit=1302`)
+        
         dispatch(setAllPokemon(data.results))
     }
 }
@@ -43,14 +45,22 @@ export const getPokemonList = ( page ) => {
 }
 
 
-export const getPokemon = (name) => {
+export const getPokemon = (id) => {
+
     return async(dispatch) => {
 
         dispatch(startLoading())
-        const {data} = await pokeApiRest.get(`/pokemon/${name}`)
-        const {data: flavor} = await pokeApiRest.get(`pokemon-species/${data.id}`)
-        const pokemonFlavor = flavor.flavor_text_entries.find( flavor => flavor.language.name === 'es')
+        
+        const {data} = await pokeApiRest.get(`/pokemon/${id}`)
+        
+        try {
+            const {data: flavor} = await pokeApiRest.get(`pokemon-species/${id}`)
+            var pokemonFlavor = flavor.flavor_text_entries.find( flavor => flavor.language.name === 'es')
+            
 
+        } catch (error) {
+            console.log('error al obtener FLAVOR del pokemon seleccionado. No existe en la PokeAPI')
+        }
         
 
         const pokemonDetails = {
@@ -61,11 +71,43 @@ export const getPokemon = (name) => {
             type: [data.types],
             weight: data.weight,
             height: data.height,
-            flavor: pokemonFlavor.flavor_text,
+            flavor: pokemonFlavor?.flavor_text,
         }
 
         dispatch(setActivePokemon({pokemonDetails}))
 
+    }
+}
+
+
+export const getSearchedPokemons = (pokemons = {}) => {
+
+    return async(dispatch) => {
+
+        dispatch(startLoading())
+        
+        const promises = pokemons.map(async(poke) => {
+            
+            const URL_ID = poke.url.split('/')
+            const id = parseInt(URL_ID[URL_ID.length - 2])
+
+            const {data} = await pokeApiRest.get(`/pokemon/${id}`)
+
+            return {
+                name: data.name,
+                image: data.sprites.other['official-artwork'].front_default, 
+                id: data.id,
+                stats: data.stats,
+                type: [data.types],
+                weight: data.weight,
+                height: data.height,
+            }
+        })
+
+        const pokemonDetails = await Promise.all(promises)
+        
+
+        dispatch(setSearchedPokemons(pokemonDetails))
     }
 }
 
@@ -83,7 +125,7 @@ export const prevPageOfPokemons = () => {
     return async(dispatch, getState) => {
         dispatch(startLoading())
         const {page} = getState().pokedex
-        if( page === 0) return console.log('estas en la pagina cero')
+        if( page === 0) return 
         dispatch(handlePage({page: page - 1}))
     }
 } 

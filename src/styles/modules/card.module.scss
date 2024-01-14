@@ -2,15 +2,15 @@
     height: 100%;
     padding: 2rem ;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
     grid-template-rows: repeat(auto-fill, 100px);
-    grid-gap: 10px;
+    grid-gap: 20px;
     justify-items: center;
     align-items: start;
 }
 
 .card{
-    width: 230px;
+    width: 280px;
     height: 100px;
     padding: 10px 10px 15px;
     background-color: rgba(29, 29, 29, 0.986);
@@ -20,6 +20,7 @@
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+    position: relative;
     
 
     .cardText{
@@ -57,9 +58,10 @@
     }
 
     .cardImg{
-
+        position: absolute;
+        right: 10px;
         > img{
-            width: 110px;
+            width: 120px;
         }
     }
 }

@@ -8,14 +8,13 @@ import css from '../../styles/modules/card.module.scss';
 export const Cards = ({pokemon}) => {
 
   const colors = colorByType;
-  const type = pokemon.type[0][0].type.name
+  const type = pokemon?.type[0][0].type.name
   const background = colors[type]
   const navigate = useNavigate()
 
   const goToDetail = () => {
-    navigate(`/pokedex/${pokemon.name}`)
+    navigate(`/pokedex/${pokemon.name}/${pokemon.id}`)
   }
-
 
   return (
     <div className={css.card} 
