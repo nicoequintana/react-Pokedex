@@ -64,6 +64,14 @@ export const pokedexSlice = createSlice({
       state.isLoading = false;
     },
 
+    setEvolutionChain: (state, action) => {
+
+      
+
+      statusbar.isLoading = false
+
+    }
+
   },
 })
 
@@ -76,6 +84,6 @@ export const {
   handlePage,
   favPokemons,
   setSearchedPokemons,
-
+  setEvolutionChain,
 
 } = pokedexSlice.actions   

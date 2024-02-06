@@ -19,7 +19,7 @@ export const getPokemonList = ( page ) => {
 
         dispatch(startLoading())
 
-        const {data} = await pokeApiRest.get(`/pokemon/?limit=20&offset=${page * 20}`)
+        const {data} = await pokeApiRest.get(`/pokemon/?limit=50&offset=${page * 50}`)
 
         const promises = data.results.map( async(poke) => {
 
@@ -110,6 +110,25 @@ export const getSearchedPokemons = (pokemons = {}) => {
         dispatch(setSearchedPokemons(pokemonDetails))
     }
 }
+
+
+
+//TODO: conseguir la cadena evolutiva de cada pokemon
+
+export const getEvolutionChain = (id) => {
+    return async(dispatch, getState) => {
+        dispatch(startLoading())
+
+        const {data} = await pokeApiRest.get(`/evolution-chain/${id}`)
+        console.log(data.chain.evolves_to[0].species.name)
+        console.log(data.chain?.evolves_to[0]?.evolves_to[0]?.species?.name)
+        console.log(id)
+
+        
+    }
+}
+
+
 
 export const nextPageOfPokemons = () => {
 

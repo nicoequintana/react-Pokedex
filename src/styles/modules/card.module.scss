@@ -1,5 +1,5 @@
 .cardsContainer{
-    height: 100%;
+    height: calc(100vh - 200px);
     padding: 2rem ;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
@@ -7,6 +7,10 @@
     grid-gap: 20px;
     justify-items: center;
     align-items: start;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    
 }
 
 .card{

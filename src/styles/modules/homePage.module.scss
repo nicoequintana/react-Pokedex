@@ -1,0 +1,107 @@
+
+
+.homeContainer{
+    width: 100%;
+    height: calc(100vh - 200px);
+    padding: 2rem 0;
+    color: black;
+    background-image: url('../../assets/images/BG_HOME_LIGHT.png');
+    background-position: center;
+    background-attachment: fixed;
+    background-size: contain;
+    overflow: auto;
+
+    h2{
+        text-align: center;
+        margin: 0 auto 1.5rem;
+    }
+
+    .newsCards{
+        width: 90%;
+        height: min-content;
+        margin: 0 auto 2.5rem;
+        height: fit-content;
+        background-color: #fff;
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, max-content));
+        grid-template-rows: auto;
+        grid-gap: 1rem;
+        align-content: center;
+        justify-content: center;
+        overflow: hidden;
+
+  
+
+        .card{
+            width: 280px;
+            height: 350px;
+            border-radius: 5px;
+            overflow: hidden;
+    
+            img{
+                width: 100%;
+                object-fit: cover;
+                border-bottom: 2px solid #fff;
+                margin-bottom: 1rem;
+            }
+    
+            .cardTxt{
+                padding: 1rem;
+                margin: 0 auto;
+                
+                h3{
+                    color: #fff;
+                    font-size: 1.8rem;
+                    margin-bottom: 1rem;
+                }
+    
+                p{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+
+    
+
+}
+
+.card:nth-child(1){
+    background-color: rgb(238, 114, 243);
+    color: rgb(155, 37, 159);
+}
+
+.card:nth-child(2){
+    background-color: rgb(221,186,171);
+
+}
+
+.card:nth-child(3){
+    background-color: rgb(93,73,162);
+
+}
+
+.card:nth-child(4){
+    background-color: rgb(142,90,179);
+
+}
+
+.cardGame{
+    width: 250px;
+    margin: 0 auto;
+
+    img{
+        width: 100%;
+    }
+
+    .cardGameTxt{
+        width: 100%;
+
+        h3{
+            padding: 1.5rem;
+            border: 1px solid black;
+            text-align: center;
+        }
+    }
+}

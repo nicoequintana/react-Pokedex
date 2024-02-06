@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { getPokemon } from "../../store/thunks/thunks"
+import { getEvolutionChain, getPokemon } from "../../store/thunks/thunks"
 import { favPokemons } from "../../store/slice/slice";
 import { Loader } from "../../components/loader/Loader";
 import { BarStat } from "../../components/statBar/BarStat";
@@ -24,6 +24,10 @@ export const PokemonDetail = () => {
 
     useEffect(() => {
       dispatch(getPokemon(id))
+    }, [])
+
+    useEffect(() => {
+      dispatch(getEvolutionChain(id))
     }, [])
 
     const backNavigate = () => {
